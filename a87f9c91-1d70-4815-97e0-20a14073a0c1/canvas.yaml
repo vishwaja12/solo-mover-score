@@ -1,0 +1,184 @@
+id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+name: SoloMoverScore
+project_id: 5dcf02e0-0287-4a96-9c51-66eb29b0173f
+global_imports: []
+python_global_imports: ''
+r_global_imports: ''
+requirements: []
+linux_packages: []
+environment_variables: []
+is_public: true
+organization_id: 6845de24-13e6-4d33-9a1c-52ec71d5cc50
+layers:
+- blocks:
+  - auto_size: false
+    canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    compute_settings: null
+    description: Normalizes country name formats across three datasets by splitting
+      CamelCase, removing parenthetical notes, and mapping regional variants to canonical
+      English spellings. Ensures consistent country naming for downstream data merging
+      and analysis.
+    height: 1000
+    id: 05468fa3-ea3a-4eb1-9c82-064a4d114e54
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    name: Standardize Country Names
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 4000
+    y: 0
+  - auto_size: false
+    canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    compute_settings: null
+    description: Load and inspect three datasets (quality of life indices, World Happiness
+      Report, and livable cities) to identify structure, columns, data types, and
+      potential join keys.
+    height: 1000
+    id: 093eacf9-b32c-4874-a0e6-102491848134
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    name: Load & Inspect Sources
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 0
+    y: 0
+  - auto_size: false
+    canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    compute_settings: null
+    description: "Calculates a Solo Mover Score (0\u2013100) for 148 cities by normalizing\
+      \ affordability, safety, healthcare, and social support; maps cities to archetypes\
+      \ and growth forecasts; generates three preset rankings (balanced, safety-heavy,\
+      \ social-heavy) to help solo travelers find ideal destinations."
+    height: 1000
+    id: 51010ee8-f296-4730-a480-1c120e9e3861
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    name: Solo Mover Score
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 10000
+    y: 1400
+  - auto_size: false
+    canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    compute_settings: null
+    description: Groups 148 cities into 3 clusters based on cost of living, purchasing
+      power, safety, healthcare, and social support. Uses silhouette score optimization
+      and standardized K-means to segment cities by quality-of-life characteristics,
+      producing centroids and city-to-cluster assignments.
+    height: 1000
+    id: 538a3e75-f0e4-49a2-9333-08346837131f
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    name: K-Means Clustering
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 8000
+    y: 0
+  - auto_size: false
+    canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    compute_settings: null
+    description: "Applies Holt's exponential smoothing to forecast cost of living\
+      \ for 81 countries (2025\u20132026), compares trend predictions with naive momentum\
+      \ forecasts, and identifies directional agreement/instability between models."
+    height: 1000
+    id: b51629ba-b857-487a-859c-5088d93a14f6
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    name: "Holt Forecasting \u2014 Cost of Living 2025\u20132026"
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 1400
+  - auto_size: false
+    canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    compute_settings: null
+    description: 'Filters and cleans source datasets: removes irregular year formats
+      from cost of living data (2020-2024), extracts 2025 happiness rankings, and
+      prepares city quality-of-life data for downstream analysis.'
+    height: 1000
+    id: e4cc0c86-e4b2-4dab-91cc-ab344e8b9e4f
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    name: Clean & Filter Sources
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 2000
+    y: 0
+  - auto_size: false
+    canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    compute_settings: null
+    description: Merges city quality of life and happiness datasets, maps countries
+      to regions, identifies mismatches (Minsk/Doha dropped), computes summary statistics,
+      and runs Spearman correlations plus Kruskal-Wallis tests comparing Safety/Healthcare
+      indices across 6 regions.
+    height: 1000
+    id: eae7e3d3-0495-4ef3-8803-5f454d732631
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    name: Country Name Mismatches
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 0
+  canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+  edges:
+  - canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    id: 371cd04b-2250-4e00-98ac-963efe081629
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    source: 093eacf9-b32c-4874-a0e6-102491848134
+    target: e4cc0c86-e4b2-4dab-91cc-ab344e8b9e4f
+  - canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    id: 393a43d0-e06b-4c70-90da-0b067552d7ee
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    source: 05468fa3-ea3a-4eb1-9c82-064a4d114e54
+    target: b51629ba-b857-487a-859c-5088d93a14f6
+  - canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    id: 5b7e6c9a-8015-4de3-bdad-2125674e5e2a
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    source: b51629ba-b857-487a-859c-5088d93a14f6
+    target: 51010ee8-f296-4730-a480-1c120e9e3861
+  - canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    id: 78dd5ebd-9e70-498a-8b94-883a9659951b
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    source: eae7e3d3-0495-4ef3-8803-5f454d732631
+    target: 538a3e75-f0e4-49a2-9333-08346837131f
+  - canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    id: 8f73f873-84c7-4342-866a-0a38efaf2de8
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    source: 05468fa3-ea3a-4eb1-9c82-064a4d114e54
+    target: eae7e3d3-0495-4ef3-8803-5f454d732631
+  - canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    id: 90d8190e-af2e-43cd-a504-b85b8a46da78
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    source: 538a3e75-f0e4-49a2-9333-08346837131f
+    target: 51010ee8-f296-4730-a480-1c120e9e3861
+  - canvas_id: a87f9c91-1d70-4815-97e0-20a14073a0c1
+    id: b486e329-7308-4edf-91aa-6d6f1870d4c7
+    layer_id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+    source: e4cc0c86-e4b2-4dab-91cc-ab344e8b9e4f
+    target: 05468fa3-ea3a-4eb1-9c82-064a4d114e54
+  id: ec1905e0-bd2c-4cad-bd37-c0a87eaa18e8
+  name: Development
+  type: 1
+assets: []
